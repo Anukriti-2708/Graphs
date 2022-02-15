@@ -1,0 +1,24 @@
+class Solution {
+    public List<List<Integer>> allPathsSourceTarget (int[][] graph) {
+        List <List<Integer>> lis = new ArrayList < List<Integer>>();
+        List<Integer> temp = new ArrayList <Integer>();
+        
+        temp.add(0);
+        
+        solve (lis, temp, 0, graph);
+        return lis;
+    }
+    
+    public void solve(List <List<Integer>> lis,List<Integer> temp, int curr,int[][] graph ) {
+        if(curr == graph.length - 1){
+            lis.add(new ArrayList(temp));
+            return;
+        }
+        
+        for(int next : graph[curr]){
+            temp.add(next);
+            solve(lis,temp,next,graph);
+            temp.remove(temp.size()-1);
+        }
+    }
+}
